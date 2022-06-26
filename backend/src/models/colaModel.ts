@@ -8,7 +8,7 @@ const colaSchema = new mongoose.Schema({
 }, {
   collection: 'colas'
 });
-console.log(colaSchema)
+
 const ColaModel = mongoose.model('Cola', colaSchema);
 
 export default ColaModel
