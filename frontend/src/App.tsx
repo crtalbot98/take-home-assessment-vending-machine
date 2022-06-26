@@ -1,11 +1,12 @@
 import React from 'react'
 import './styles/main.css';
+import ColaContainer from './components/ColaContainer';
 
 const App: React.FC = () => {
 
-  return <div>
-    hello
-  </div>
+  return <>
+    <ColaContainer/>
+  </>
 };
 
 export default App;
