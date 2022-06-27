@@ -6,11 +6,11 @@
   3. npm run build
   4. npm run start
 ### Express Routes
-  1. http://localhost:3000/cola/getAll
+  1. cola/getAll
     - Gets all the colas for the vending machine.
-  2. http://localhost:3000/cola/buyOne/:id
+  2. cola/buyOne/:id
     - Buy a single cola from an id.
-  3. http://localhost:3000/cola/updateOne/:id
+  3. cola/updateOne/:id
     - Updates a single cola's cost and num_available values.
   
 ## To run the React application.
