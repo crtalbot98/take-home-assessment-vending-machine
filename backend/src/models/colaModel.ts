@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const colaSchema = new mongoose.Schema({
   name: String,
   description: String,
-  cost: Number,
+  cost: String,
   num_available: Number
 }, {
   collection: 'colas'
