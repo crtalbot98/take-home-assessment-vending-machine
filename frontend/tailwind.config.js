@@ -5,7 +5,11 @@ module.exports = {
     './src/**/*.tsx'
   ],
   theme: {
-    extend: {},
+    extend: {
+      maxHeight: {
+        '128': '46rem',
+      }
+    },
   },
   plugins: [],
 }
