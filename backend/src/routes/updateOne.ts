@@ -6,7 +6,7 @@ const router = Router();
 export default router.post('/updateOne/:id', async (req, res) => {
   const id = req.params.id;
   const { num_available, cost } = req.body;
-  console.log('here', req.body)
+
   try{
     const updateCola = await ColaModel.findById(id);
 
