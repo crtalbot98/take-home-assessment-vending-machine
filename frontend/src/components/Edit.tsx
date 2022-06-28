@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { Cola } from "./ColaElement";
 
 type AdminViewProps = {
@@ -7,8 +7,9 @@ type AdminViewProps = {
 
 const Edit: React.FC<AdminViewProps> = ({ cola }) => {
 
-  const [numAvailableInput, setNumAvailableInput] = useState('');
-  const [costInput, setCostInput] = useState('');
+  const [numAvailableInput, setNumAvailableInput] = useState<string>('');
+  const [costInput, setCostInput] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   const updateCostInput = (evt: React.FormEvent<HTMLInputElement>) => {
     const input = evt.target.value;
@@ -24,8 +25,37 @@ const Edit: React.FC<AdminViewProps> = ({ cola }) => {
     setNumAvailableInput(input)
   }
 
+  const submitForm = async(evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    console.log(JSON.stringify({
+      cost: costInput,
+      num_available: numAvailableInput
+    }))
+
+    const changes = await fetch(`http://localhost:3000/cola/updateOne/${cola._id}`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        cost: costInput,
+        num_available: numAvailableInput
+      })
+    });
+    const changesJson = await changes.json();
+
+    if(changesJson.Error) setError(changesJson.Error);
+  }
+
   return <div className='p-4 w-full'>
-    <form className='card w-full space-y-1 inline-block' id={cola.name} method="POST" action={`http://localhost:3000/cola/updateOne/${cola._id}`}>
+    <p>{error}</p>
+    <form 
+      className='card w-full space-y-1 inline-block' 
+      id={cola.name} 
+      action={`http://localhost:3000/cola/updateOne/${cola._id}`}
+      onSubmit={submitForm}
+    >
       <h2>{cola.name} - ${cola.cost} - {cola.num_available} available</h2>
       <label htmlFor="num_available">Number Available</label>
       <input type="text" name="num_available" id="num_available" value={numAvailableInput} onInput={updateNumAvailableInput}/>

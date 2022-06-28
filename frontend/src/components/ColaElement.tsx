@@ -4,7 +4,7 @@ export type Cola = {
   _id: string,
   name: string,
   description: string,
-  cost: number,
+  cost: string | number,
   num_available: number
 }
 
