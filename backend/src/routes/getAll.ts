@@ -5,7 +5,7 @@ const router = Router();
 
 export default router.get('/getAll', async (req, res) => {
   try{
-    const colas = await ColaModel.find();
+    let colas = await ColaModel.find();
 
     colas.forEach((cola) => {
       cola.cost = (Number(cola.cost) / 100).toFixed(2)

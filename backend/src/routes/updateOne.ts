@@ -1,30 +1,28 @@
 import { Router } from 'express';
 import ColaModel from '../models/colaModel.js';
 
-type ColaUpdates = {
-  cost?: number,
-  num_available?: number
-}
-
 const router = Router();
 
 export default router.post('/updateOne/:id', async (req, res) => {
   const id = req.params.id;
   const { num_available, cost } = req.body;
-  let updates: ColaUpdates = {};
-
-  if(cost && cost > 0) {
-    updates.cost = cost
-  }
-  else if(num_available && num_available > 0) {
-    updates.num_available = num_available
-  }
-
+  console.log('here', req.body)
   try{
-    const updatedCola = await ColaModel.findByIdAndUpdate(id, updates);
+    const updateCola = await ColaModel.findById(id);
 
-    if(!updatedCola) throw new Error('Unable to find cola');
-    res.send(updatedCola)
+    if(!updateCola) throw new Error('Unable to find cola');
+    
+    if(cost) {
+      const costWithoutDecimal = cost.toString().replace('.', '');
+      updateCola.cost = Number(costWithoutDecimal);
+    }
+    else if(num_available) {
+      updateCola.num_available = num_available;
+    }
+
+    updateCola.save();
+
+    res.send(updateCola)
   }
   catch(err) {
     console.log('ERROR :: colas updateOne', err);
