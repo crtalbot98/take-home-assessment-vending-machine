@@ -12,12 +12,12 @@ export default router.get('/buyOne/:id', async (req, res) => {
     if(cola.num_available < 1) throw new Error(`${cola.name} is out of stock`);
 
     cola.num_available -= 1;
-    cola.save();
+    await cola.save();
 
     res.send(cola)
   }
   catch(err) {
     console.log('ERROR :: colas getOneById', err);
-    res.status(500).send({ Error: err.message })
+    res.status(500).send({ error: err.message })
   }
 })

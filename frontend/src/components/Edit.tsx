@@ -27,10 +27,9 @@ const Edit: React.FC<AdminViewProps> = ({ cola }) => {
 
   const submitForm = async(evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log(JSON.stringify({
-      cost: costInput,
-      num_available: numAvailableInput
-    }))
+
+    if(costInput && Number(costInput) < 1) setError('Cost cannot be less than $0.01.');
+    else if(numAvailableInput && Number(numAvailableInput) < 0) setError('Num_available cannot be less than 0');
 
     const changes = await fetch(`http://localhost:3000/cola/updateOne/${cola._id}`, {
       method: 'POST',
@@ -45,7 +44,7 @@ const Edit: React.FC<AdminViewProps> = ({ cola }) => {
     });
     const changesJson = await changes.json();
 
-    if(changesJson.Error) setError(changesJson.Error);
+    if(changesJson.error) setError(changesJson.error);
   }
 
   return <div className='p-4 w-full'>

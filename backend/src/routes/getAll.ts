@@ -15,6 +15,6 @@ export default router.get('/getAll', async (req, res) => {
   }
   catch(err) {
     console.log('ERROR :: colas getAll', err);
-    res.status(500).send({ Error: 'Unable to get colas' })
+    res.status(500).send({ error: 'Unable to get colas' })
   }
 })
