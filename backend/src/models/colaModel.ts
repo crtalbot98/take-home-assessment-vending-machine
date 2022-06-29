@@ -16,16 +16,14 @@ const colaSchema = new mongoose.Schema({
   },
   cost: {
     type: String,
-    min: [1, 'Cola cannot cost less than $0.01.'],
     required: function () {
-      return !!this.cost
+      if (this.cost < 1) throw new Error('Cola cannot cost less than $0.01.')
     }
   },
   num_available:{
     type: Number,
-    min: [0, 'There cannot be less than zero colas.'],
     required: function() {
-      return !!this.num_available
+      if (this.num_available < 0) throw new Error('There cannot be less than zero colas.')
     }
   }
 }, {

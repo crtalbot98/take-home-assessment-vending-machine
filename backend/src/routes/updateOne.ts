@@ -20,12 +20,13 @@ export default router.post('/updateOne/:id', async (req, res) => {
       updateCola.num_available = num_available;
     }
 
-    updateCola.save();
+    const message = await updateCola.save();
+    console.log(message)
 
     res.send(updateCola)
   }
   catch(err) {
     console.log('ERROR :: colas updateOne', err);
-    res.status(400).send({ Error: err.message })
+    res.status(400).send({ error: err.message })
   }
 })
