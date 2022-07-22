@@ -1,5 +1,4 @@
-# vending-machine-assessment
-
+# This is from a take-home assessment I completed over a few hours of work. Built using React, TailwindCSS, Webpack, Express, and MongoDB
 ## To run the Express API.
   1. There needs to be an .env file with a MONGODB_URL variable.
   2. Make sure to run npm install
