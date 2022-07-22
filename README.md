@@ -1,7 +1,7 @@
 # vending-machine-assessment
 
 ## To run the Express API.
-  1. There needs to be an .env file with a MONGODB_URL variable. Please let me know if you want this.
+  1. There needs to be an .env file with a MONGODB_URL variable.
   2. Make sure to run npm install
   3. npm run build
   4. npm run start
