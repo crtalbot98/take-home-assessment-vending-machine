@@ -24,6 +24,3 @@
   
 ### User view
 ![vending-machine-assessment-screenshot](https://user-images.githubusercontent.com/50780917/176020262-0f152fa8-b43e-42a0-a334-c53b83bebb14.png)
-
-### Admin View
-![vending-machine-assessment-admin](https://user-images.githubusercontent.com/50780917/176021838-a2b5fe89-a757-421a-878b-42b51bb84314.png)
